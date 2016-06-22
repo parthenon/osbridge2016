@@ -1,0 +1,3 @@
+myhostname = mail.mydomain.com
+alias_database = hash:/etc/aliases
+smtpd_recipient_restrictions = reject_rbl_client bl.mydomain.com,permit

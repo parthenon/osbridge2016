@@ -1,0 +1,29 @@
+sudo apt-get update
+sudo apt-get install pdns-server pdns-backend-mysql mysql-server libmysqlclient-dev python-pip python-virtualenv python-dev  
+sudo pip install virtualenvwrapper
+
+Don't forget to delete the simplebind backend for PowerDNS! MySQL is much better.
+
+export WORKON_HOME=$HOME/Envs
+export PIP_REQUIRE_VIRTUALENV=true
+export PIP_RESPECT_VIRTUALENV=true
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+source /usr/local/bin/virtualenvwrapper.sh
+
+mkvirtualenv reportspam
+workon reportspam
+mkdir -p /srv/www
+# Put reportspam.py and requirements.txt in there
+pip install -r requirements.txt
+python reportspam.py
+
+# Meanwhile, back on your mail server...
+# Test DNS...
+dig @my.dnsbl.com soa bl.mydomain.com
+# Test spam reporting...
+curl http://my.dnsbl.com/report/111.222.123.123
+
+# Better, more sustainable...
+apt-get install uwsgi-plugin-python uwsgi nginx
+
+# 

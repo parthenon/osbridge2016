@@ -1,0 +1,4 @@
+header RCVD_IN_PARTHBL      eval:check_rbl('parthbl', 'bl.parthenonsoftware.com')
+describe RCVD_IN_PARTHBL    PARTHBL: sender sent email to a spamtrap
+score  RCVD_IN_PARTHBL      3.0
+

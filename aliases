@@ -1,0 +1,4 @@
+# Spam traps
+bob: |/usr/local/bin/spamtrap.py
+fred: |/usr/local/bin/spamtrap.py
+dan: |/usr/local/bin/spamtrap.py

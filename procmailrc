@@ -1,0 +1,16 @@
+DELIVER="/usr/lib/dovecot/deliver"
+# fallback:
+MAILDIR="$HOME/Maildir/"
+DROPPRIVS=yes
+
+# run spamc if message is certain size
+:0fw: spamassasin.lock
+* < 256000
+| spamc
+
+# if spamc detects mesage as spam send straight to junk
+:0 w
+* ^X-Spam-Flag: Yes
+* ^X-Spam-Status: Yes
+|$DELIVER -m Junk
+
